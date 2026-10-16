@@ -1,0 +1,16 @@
+---
+import NotebookArchive from '../../../components/NotebookArchive.astro';
+import { getPublishedCategories, getPublishedEntries } from '../../../application/entries';
+
+export async function getStaticPaths() {
+  const entries = await getPublishedEntries();
+  return getPublishedCategories(entries).map((category) => ({
+    params: { category },
+    props: { category, entries },
+  }));
+}
+
+const { category, entries } = Astro.props;
+---
+
+<NotebookArchive entries={entries} selectedCategory={category} />

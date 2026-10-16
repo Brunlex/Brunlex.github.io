@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EntryCard from '../components/EntryCard.astro';
+import { getPublishedEntries } from '../application/entries';
+import { profile } from '../data/profile';
+const entries = (await getPublishedEntries()).slice(0, 2);
+---
+
+<BaseLayout title="Inicio" description="Bruno Choque: Economía, gestión pública, voluntariado y un cuaderno personal de lecturas y experiencias.">
+  <section class="hero section-wrap" aria-labelledby="hero-title">
+    <div class="hero-topline"><span class="eyebrow">Economía · Personas · Historias</span><span class="hero-location">Desde Arequipa, Perú <span class="asterisk" aria-hidden="true">✳</span></span></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker">Hola, soy Bruno.</p>
+        <h1 id="hero-title">Entre los <em>datos</em><br />y las <em>personas.</em></h1>
+        <p class="hero-lead">{profile.introduction} También creo que las historias y la lectura ayudan a comprender mejor el mundo que compartimos.</p>
+        <div class="hero-actions"><a class="button-primary" href="/trayectoria/">Conoce mi trayectoria <span aria-hidden="true">↗</span></a><a class="button-text" href="/cuaderno/">Explora mi cuaderno <span aria-hidden="true">→</span></a></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="art-circle art-circle-one"></div><div class="art-circle art-circle-two"></div><div class="art-spine"></div><span class="art-letter">B</span><span class="art-caption">Una historia<br />en construcción</span><span class="art-star">✳</span></div>
+    </div>
+    <div class="hero-bottom"><span>01 / Una presentación</span><span>Desliza para conocerme <span aria-hidden="true">↓</span></span></div>
+  </section>
+
+  <section class="intro-band" aria-labelledby="intro-title"><div class="section-wrap intro-grid"><div><span class="eyebrow">Una breve introducción</span><h2 id="intro-title">Mirar de cerca.<br /><em>Entender mejor.</em></h2></div><div><p>{profile.summary}</p><a class="text-link" href="/trayectoria/">Más sobre mi trabajo <span aria-hidden="true">↗</span></a></div></div></section>
+
+  <section class="section-wrap paths-section" aria-labelledby="paths-title"><div class="section-heading"><span class="eyebrow">Dos formas de conocerme</span><h2 id="paths-title">Lo que hago y lo que <em>me mueve.</em></h2></div><div class="paths-grid"><a class="path-card path-work" href="/trayectoria/"><span class="path-number">01 / Trayectoria</span><div><h3>Trabajo con<br /><em>propósito.</em></h3><p>Economía, gestión de datos, control patrimonial y trabajo con jóvenes.</p></div><span class="path-arrow" aria-hidden="true">↗</span></a><a class="path-card path-notes" href="/cuaderno/"><span class="path-number">02 / Cuaderno</span><div><h3>Una vida entre<br /><em>páginas.</em></h3><p>Un espacio para mis lecturas, recuerdos, ideas y momentos importantes.</p></div><span class="path-arrow" aria-hidden="true">↗</span></a></div></section>
+
+  <section class="quote-section" aria-labelledby="quote-title"><div class="section-wrap quote-inner"><span class="quote-mark" aria-hidden="true">“</span><div><span class="eyebrow">Una convicción</span><h2 id="quote-title">Los números cuentan algo.<br /><em>Las personas les dan sentido.</em></h2></div><span class="quote-flower" aria-hidden="true">✳</span></div></section>
+
+  {entries.length > 0 && <section class="section-wrap latest-section" aria-labelledby="latest-title"><div class="section-heading heading-inline"><div><span class="eyebrow">Desde el cuaderno</span><h2 id="latest-title">Notas <em>recientes.</em></h2></div><a class="text-link" href="/cuaderno/">Ver todas <span aria-hidden="true">↗</span></a></div><div class="entry-grid">{entries.map((entry) => <EntryCard entry={entry} />)}</div></section>}
+</BaseLayout>

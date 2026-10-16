@@ -1,0 +1,7 @@
+---
+import NotebookArchive from '../../components/NotebookArchive.astro';
+import { getPublishedEntries } from '../../application/entries';
+const entries = await getPublishedEntries();
+---
+
+<NotebookArchive entries={entries} />
