@@ -1,0 +1,297 @@
+<div id="hyp-color" class="defaultPalette"><div class="hyp">
+  
+  <!-- RIGHT MENU -->
+  <div class="hyp-menu">
+    <input type="checkbox" id="hyp-main-menu">
+    <label for="hyp-main-menu" class="hyp-menu-click">
+      <div class="hyp-menu-click1"><div class="hyp-menu-click2"><div><i class="ph-duotone ph-hand-pointing"></i></div></div></div>
+      <div class="hyp-menu-click3">menu</div>
+    </label>
+    
+    <div class="hyp-main-menu">ncdjlkshdjchd
+      
+      <label for="hyp-main-menu">get me outta here!</label><br>
+      
+      <br><br>      
+      menu stuff otherwise: member greeting, some text blurb to preview shifting font size, navigation buttons, current month genre bonus, tab into thread tracker<br><br>
+      options:<br>
+      <input type="range" id="hyp-mode" name="hyp-mode" value="1" min="1" max="3" onchange="hypModeSwitch()"/>
+      <br>
+      light -> sepia -> dark
+      <br>
+      low contrast mode: <span id="contrastmode">click me!</span><br>
+      "too busy?" focus mode: get back to you on this...<br>
+      font size
+          <button id="font-up">+</button>
+          <button id="font-reset">/</button>
+          <button id="font-down">-</button>
+      <br>
+      dropdown to preview each member group (not present on final skin)<br><br>
+      
+      
+      <select name="hypColorBasic" id="hypColorBasic" onchange="hypColorBasic()">
+        <option value="default" selected>default</option>
+        <option value="prettyPink">pretty pink</option>
+        <option value="cherryRed">cherry red</option>
+        <option value="tangyOrange">tangy orange</option>
+        <option value="glitterGold">glitter gold</option>
+        <option value="leafyGreen">leafy green</option>
+        <option value="seafoamTeal">seafoam teal</option>
+        <option value="berryBlue">berry blue</option>
+        <option value="perfectPurple">perfect purple</option>
+    </select>
+      
+      <select name="hypColorPremium" id="hypColorPremium" onchange="hypColorPremium()">
+        <option value="default" selected>default</option>
+        <option value="bubblegumCrisis">bubblegum crisis</option>
+        <option value="pinkLemonade">pink lemonade</option>
+        <option value="hatsuneMiku">hatsune miku</option>
+        <option value="unicornDust">unicorn dust</option>
+        <option value="appleOrchard">apple orchard</option>
+        <option value="retroGamer">retro gamer</option>
+        <option value="summerSunshine">summer sunshine</option>
+        <option value="citrusTwist">citrus twist</option>
+        <option value="goldfishPond">goldfish pond</option>
+        <option value="lightningBolt">lightning bolt</option>
+        <option value="mayFlowers">may flowers</option>
+        <option value="melonSlice">melon slice</option>
+        <option value="blindJustice">blind justice</option>
+        <option value="greenerGrass">greener grass</option>
+        <option value="circusTent">circus tent</option>
+        <option value="popsicleStick">popcicle stick</option>
+        <option value="blueberryLemonade">blueberry lemonade</option>
+        <option value="gamecubeController">gamecube controller</option>
+        <option value="mulberryBush">mulberry bush</option>
+        <option value="jokerBaby">joker baby</option>
+        <option value="dixieCup">dixie cup</option>
+    </select>
+      
+      <select name="hypColorSpecial" id="hypColorSpecial" onchange="hypColorSpecial()">
+        <option value="default" selected>default</option>
+        <option value="preciousMetals">precious metals</option>
+        <option value="cyberPunk">cyberpunk</option>
+        <option value="cyberPink">cyberpink</option>
+        <option value="sourCandies">sour candies</option>
+        <option value="coffeeCake">coffee cake</option>
+        <option value="neaPolitan">neapolitan</option>
+        <option value="pikaPika">pika pika</option>
+        <option value="camoGear">camo gear</option>
+        <option value="peppermintPatty">peppermint patty</option>
+    </select>
+      
+      <select name="hypColorMonochrome" id="hypColorMonochrome" onchange="hypColorMonochrome()">
+        <option value="default" selected>default</option>
+        <option value="pastelGoth">pastel goth</option>
+        <option value="vampireBlood">vampire blood</option>
+        <option value="jackoLantern">jack-o-lantern</option>
+        <option value="bumbleBee">bumblebee</option>
+        <option value="getSlimed">get slimed</option>
+        <option value="winterNight">winter night</option>
+        <option value="brutalistBlue">brutalist blue</option>
+        <option value="witchingHour">witching hour</option>
+        <option value="doberMann">dobermann</option>
+        <option value="newsPrint">newsprint</option>
+        <option value="paintBlack">paint it black</option>
+    </select>
+      
+      <select name="hypColorHoliday" id="hypColorHoliday" onchange="hypColorHoliday()">
+        <option value="default" selected>default</option>
+        <option value="thanksGiving">thanksgiving</option>
+        <option value="halloWeen">halloween</option>
+        <option value="stPatrick">st. patrick's</option>
+        <option value="easTer">easter</option>
+        <option value="newYear">new year</option>
+        <option value="kwanZaa">kwanzaa</option>
+        <option value="valentinesDay">valentine's day</option>
+        <option value="hanuKkah">hanukkah</option>
+    </select>
+      
+      <div class="hyp-main-menu-colors">
+        <div></div><div></div></div>
+      
+      
+      
+    </div>
+    
+    <div class="hyp-menu-divide"><div></div></div>
+    <div class="hyp-menu-links">
+      <a href="#hypTop"><i class="ph ph-arrow-circle-up"></i></a>
+      <a href="#" class="home"><i class="ph ph-house"></i></a>
+      <a href="#" class="notif"><div>23</div><i class="ph ph-bell"></i></a>
+      <a href="#" class="notif"><div>1</div><i class="ph ph-paper-plane-tilt"></i></a>
+      <a href="#"><i class="ph ph-power"></i></a>
+      <a href="#"><i class="ph ph-user-plus"></i></a>
+      <a href="#hypBot"><i class="ph ph-arrow-circle-down"></i></a>
+    </div>
+    <div class="hyp-menu-divide"><div></div></div>
+    
+    <a href="#" class="hyp-menu-topr"><div class="hyp-banner-topr2">HYPER<b>LINK</b></div></a>
+  </div>
+  <div class="hyp-slant"></div>
+  
+  <div class="hyp-body">
+    <div id="hypTop"></div>
+    
+    <!-- FORUM BODY -->
+    <div class="hyp-wrapper">
+      
+      <!-- BANNER AREA -->
+      <div class="hyp-ban">
+      <div class="hyp-banner">
+        <div class="hyp-banner-top"><div class="hyp-banner-top1">
+          <div class="hyp-banner-sub">
+            <i></i>
+            <b>a sandbox</b>roleplaying forum
+          </div>
+          <div class="hyp-banner-sub">
+            <i></i>
+            <b>000 members</b>along for the ride
+          </div>
+          <div class="hyp-banner-sub">
+            <i></i>
+            <b>animanga + rl</b>all characters welcome
+          </div>
+          <div class="hyp-banner-topr">
+            <div class="hyp-banner-icon"><div class="hyp-banner-icon1"><div style="background-image:url(https://i.ibb.co/cLx73Db/Surtr13.png);"></div></div></div>
+            <div class="hyp-banner-topr2">HYPER<b>LINK</b></div>
+          </div>
+          
+        </div></div>
+        <div class="hyp-banner-left">
+          <div class="hyp-banner-name">
+            HYPER<b>LINK</b></div>
+          <div class="hyp-banner-blurb">
+            <div>Welcome to <b>Hyper Link</b> a <i>no app, no shipper</i> sandbox roleplay that aims to provide an all-inclusive space to write whatever, whenever, and with whomever you'd like. Interested? Register with your <i>full alias</i> and get started today!</div></div>
+          <a href="#" class="hyp-banner-event">
+            <div class="hyp-banner-event-icon"><i class="ph-duotone ph-bookmark-simple"></i></div>
+            <div class="hyp-banner-event-img"></div>
+            <div class="hyp-banner-event-left">
+              grand<br>opening
+              <div>ver.01.01</div></div>
+            <div class="hyp-banner-event-right"><i class="ph-duotone ph-cursor-click"></i></div>
+          </a>
+          <div href="#" class="hyp-banner-event2"></div>
+        </div>        
+        <div class="hyp-banner-divide"><div></div></div>
+        <div class="hyp-banner-img">
+          <div class="hyp-banner-render-text">
+            <b>hyper</b><b>link</b></div>
+          <div class="hyp-banner-render"></div>
+          <div class="hyp-banner-img2"><div></div></div>
+          <div class="hyp-banner-img3"></div>
+        </div>
+      </div></div>    
+      <div class="hyp-banner-bot"><div></div></div>
+      
+      
+      <div class="hyp-cat">
+        <a href="#" class="hyp-cat1-name"><div>hyper<b>link</b></div>handbook</a>
+        <div class="hyp-cat1-links">
+          <a href="#"><div>startup</div><i class="ph ph-hand-waving"></i></a>
+          <a href="#"><div>guidelines</div><i class="ph ph-ruler"></i></a>
+          <a href="#"><div>personalize</div><i class="ph ph-palette"></i></a>
+          <a href="#"><div>coding</div><i class="ph ph-code"></i></a>
+          <a href="#"><div>credits</div><i class="ph ph-smiley"></i></a>
+        </div>
+        <div class="hyp-cat1-divide"></div>
+      </div>
+      <div class="hyp-cat2">
+        <div class="hyp-cat2-left"><div></div></div>
+        <span></span>
+        <div class="hyp-cat2-right"><div></div></div>
+      </div>
+      
+      
+      
+      <div style="height:200px;">stuff here</div>
+      
+      
+      
+      <div class="hyp-genres">
+        <div class="hyp-genres-left">
+          <div class="hyp-genres-anchor">
+            <a href="#hyperlink">hyper links</a>
+            <a href="#communication">communication</a>
+            <a href="#fandom">fandom</a>
+            <a href="#action">action</a>
+            <a href="#fantasy">fantasy</a>
+            <a href="#historical">historical</a>
+            <a href="#horror">horror</a>
+            <a href="#mystery">mystery</a>
+            <a href="#romance">romance</a>
+            <a href="#scifi">sci-fi</a>
+            <a href="#sliceoflife">slice-of-life</a>
+            <a href="#supernatural">supernatural</a>
+          </div>
+        </div>
+        <div class="hyp-genres-right">
+          
+          
+          
+          <div class="hyp-genre" id="supernatural">
+            <div class="hyp-genre-left"></div>
+            <div class="hyp-genre-right">
+              <div class="hyp-genre-top">
+                <div class="hyp-genre-icon"><i class="ph-duotone ph-smiley-x-eyes"></i></div>
+                <a href="#" class="hyp-genre-name">supernatural</a>
+                <div class="hyp-genre-desc">I guess it can't be helped, it's just a matter of when. Do you think she'd notice if I <b>never bloomed again?</b> As our roots grow tangled, <i>letters rotting on read</i>, I just close my eyes as I get stuck within my head.</div>
+              </div>
+              <div class="hyp-genre-bot">
+                
+                <input type="radio" name="hyp-subgenres-10" id="hyp-subgenre-sup1" checked>
+                <label class="hyp-subgenre-label" for="hyp-subgenre-sup1">monster hunters</label>
+                <input type="radio" name="hyp-subgenres-10" id="hyp-subgenre-sup2">
+                <label class="hyp-subgenre-label" for="hyp-subgenre-sup2">magical girls</label>
+                
+                <div class="hyp-subgenre hyp-subgenre-sup1">meow</div>
+                <div class="hyp-subgenre hyp-subgenre-sup2">woof</div>
+                
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          <div class="hyp-genre" id="action">
+            <div class="hyp-genre-left"></div>
+            <div class="hyp-genre-right">
+              <div class="hyp-genre-top">
+                <div class="hyp-genre-icon"><i class="ph-duotone ph-hand-fist"></i></div>
+                <a href="#" class="hyp-genre-name">action</a>
+                <div class="hyp-genre-desc">Late nights alone, <i>the sapling seeks to grow</i>, to sow, to see you through the phone. Through paths unknown, my heart elopes by prose, <b>Hello!</b> awarded best in show.</div>
+              </div>
+              <div class="hyp-genre-bot">
+                
+                <input type="radio" name="hyp-subgenres-11" id="hyp-subgenre-act1" checked>
+                <label class="hyp-subgenre-label" for="hyp-subgenre-act1">superheroes</label>
+                <input type="radio" name="hyp-subgenres-11" id="hyp-subgenre-act2">
+                <label class="hyp-subgenre-label" for="hyp-subgenre-act2">spies</label>
+                <input type="radio" name="hyp-subgenres-11" id="hyp-subgenre-act3">
+                <label class="hyp-subgenre-label" for="hyp-subgenre-act3">apocalypse</label>
+                
+                <div class="hyp-subgenre hyp-subgenre-act1">meow</div>
+                <div class="hyp-subgenre hyp-subgenre-act2">woof</div>
+                <div class="hyp-subgenre hyp-subgenre-act3">moo</div>
+                
+              </div>
+            </div>
+          </div>
+          
+          
+          
+        </div>
+      </div>
+
+      
+      
+    </div>
+    
+    <div id="hypBot"></div>
+  </div>
+</div></div>
+
+
+
+<script src="https://code.jquery.com/jquery-1.7.2.js"></script>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
