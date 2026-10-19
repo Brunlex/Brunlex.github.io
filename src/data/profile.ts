@@ -6,7 +6,7 @@ export const profile = {
   location: 'Arequipa, Perú',
   email: 'bruno.eduardo.choq@gmail.com',
   linkedin: 'https://www.linkedin.com/in/bruno-alex-eduardo-choque-a630633a0',
-  introduction: 'Estudiante de Economía interesado en el análisis de datos y en una gestión pública más eficiente.',
+  introduction: 'Estudiante de Economía interesado en la lectura constante y en una gestión pública más eficiente. Creo firmemente en el valor de las letras.',
   summary: 'Mi experiencia une el control patrimonial, la gestión de datos y el trabajo con personas. He identificado inconsistencias en inventarios, elaborado documentación para regularizar activos y coordinado iniciativas juveniles.',
   education: {
     institution: 'Universidad Nacional de San Agustín',
