@@ -2,7 +2,7 @@ import type { Experience, Skill } from '../domain/site';
 
 export const profile = {
   name: 'Bruno Alex Eduardo Choque',
-  shortName: 'Bruno Choque',
+  shortName: 'Bruno Eduardo',
   location: 'Arequipa, Perú',
   email: 'bruno.eduardo.choq@gmail.com',
   linkedin: 'https://www.linkedin.com/in/bruno-alex-eduardo-choque-a630633a0',

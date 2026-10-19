@@ -12,7 +12,7 @@ const visibleEntries = selectedCategory
   : entries;
 ---
 
-<BaseLayout title={selectedCategory ? categories[selectedCategory] : 'Cuaderno'} description="Lecturas, ideas, recuerdos y experiencias en el cuaderno personal de Bruno Choque.">
+<BaseLayout title={selectedCategory ? categories[selectedCategory] : 'Cuaderno'} description="Lecturas, ideas, recuerdos y experiencias en el cuaderno personal de Bruno Eduardo.">
   <div class="page-heading section-wrap notebook-heading"><span class="eyebrow">02 / Cuaderno</span><h1>Una vida entre<br /><em>páginas.</em></h1><p>Un lugar para guardar lecturas, preguntas, recuerdos y momentos que merecen otra mirada.</p></div>
   <section class="section-wrap notebook-content" aria-labelledby="notebook-title"><div class="notebook-topline"><div><span class="eyebrow">Archivo personal</span><h2 id="notebook-title">Notas y <em>lecturas.</em></h2></div><span class="entry-count">{visibleEntries.length} {visibleEntries.length === 1 ? 'entrada' : 'entradas'}</span></div>
     {entries.length > 0 ? <><nav class="category-nav" aria-label="Filtrar publicaciones"><a href="/cuaderno/" aria-current={!selectedCategory ? 'page' : undefined}>Todas</a>{publishedCategories.map((category) => <a href={`/cuaderno/categoria/${category}/`} aria-current={selectedCategory === category ? 'page' : undefined}>{categories[category]}</a>)}</nav><div class="entry-grid">{visibleEntries.map((entry) => <EntryCard entry={entry} />)}</div></> : <div class="empty-notebook"><span aria-hidden="true">✳</span><h3>Las primeras páginas<br /><em>están por escribirse.</em></h3><p>Pronto habrá aquí lecturas, recuerdos e ideas de Bruno.</p></div>}
