@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeading from '../components/ui/PageHeading.astro';
+import { currentlyReading } from '../application/books';
+import { breadcrumbSchema } from '../application/seo';
+import { loadBooks } from '../infrastructure/content-repository';
+import { now } from '../data/now';
+import { formatDate } from '../lib/format';
+
+const reading = currentlyReading(await loadBooks());
+---
+
+<BaseLayout
+  title="Ahora"
+  description="Qué ocupa ahora el tiempo de Bruno Eduardo: estudios, trabajo, voluntariado, aprendizajes y lecturas en curso."
+  jsonLd={[breadcrumbSchema([{ name: 'Inicio', path: '/' }, { name: 'Ahora', path: '/ahora/' }])]}
+>
+  <PageHeading index="04 / Ahora">
+    <Fragment slot="title">En qué ando<br /><em>estos días.</em></Fragment>
+    Una página que cambia con las estaciones. Si nos conocemos poco, este es el mejor resumen de mi presente.
+  </PageHeading>
+
+  <section class="section-wrap now-content" aria-label="Mi presente">
+    <ol class="now-list" data-reveal-stagger>
+      {now.items.map((item) => (
+        <li><span class="now-label">{item.label}</span><p>{item.text}</p></li>
+      ))}
+      <li>
+        <span class="now-label">Leo</span>
+        <p>
+          {reading.length > 0
+            ? reading.map((book, index) => <>{index > 0 && ' y '}<em>{book.data.title}</em>, de {book.data.author}</>)
+            : <>Elijo el próximo libro. Mientras tanto, la <a href="/biblioteca/">biblioteca</a> guarda los anteriores.</>}
+        </p>
+      </li>
+    </ol>
+    <p class="now-updated" data-reveal>
+      Actualizado el <time datetime={now.updatedAt.toISOString()}>{formatDate(now.updatedAt)}</time> desde {now.place}.
+      Inspirado en el <a href="https://nownownow.com/about" target="_blank" rel="noopener noreferrer">movimiento /now</a>.
+    </p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+/** Estado vacío con carácter: una página en blanco esperando tinta. */
+---
+
+<div class="empty-state" data-reveal>
+  <svg class="empty-state-art" viewBox="0 0 120 80" aria-hidden="true">
+    <path class="draw" d="M10 70 Q60 52 110 70 M10 70 V18 Q35 8 60 22 Q85 8 110 18 V70 M60 22 V62" />
+  </svg>
+  <h3><slot name="title" /></h3>
+  <p><slot /></p>
+</div>

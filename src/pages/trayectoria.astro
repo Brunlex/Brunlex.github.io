@@ -1,18 +1,56 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ExperienceList from '../components/ExperienceList.astro';
+import PageHeading from '../components/ui/PageHeading.astro';
+import ExperienceList from '../components/profile/ExperienceList.astro';
+import { breadcrumbSchema, personSchema } from '../application/seo';
 import { profile } from '../data/profile';
 ---
 
-<BaseLayout title="Trayectoria" description="Formación, experiencia en control patrimonial, voluntariado y habilidades de Bruno Eduardo.">
-  <div class="page-heading section-wrap"><span class="eyebrow">01 / Trayectoria</span><h1>Aprender. Hacer.<br /><em>Contribuir.</em></h1><p>{profile.summary}</p></div>
+<BaseLayout
+  title="Trayectoria"
+  description="Formación en Economía, experiencia en control patrimonial y gestión de datos, voluntariado juvenil y habilidades de Bruno Eduardo."
+  type="profile"
+  jsonLd={[personSchema(), breadcrumbSchema([{ name: 'Inicio', path: '/' }, { name: 'Trayectoria', path: '/trayectoria/' }])]}
+>
+  <PageHeading index="03 / Trayectoria">
+    <Fragment slot="title">Aprender. Hacer.<br /><em>Contribuir.</em></Fragment>
+    {profile.summary}
+  </PageHeading>
+
   <div class="resume-layout section-wrap">
-    <aside class="resume-aside"><span class="aside-symbol" aria-hidden="true">✳</span><p>Formación y experiencia al servicio de una gestión más clara, cuidadosa y humana.</p><a class="text-link" href={`mailto:${profile.email}`}>Conversemos <span aria-hidden="true">↗</span></a></aside>
+    <aside class="resume-aside">
+      <span class="aside-symbol" aria-hidden="true">✳</span>
+      <p>Formación y experiencia al servicio de una gestión más clara, cuidadosa y humana.</p>
+      <nav class="resume-toc" aria-label="En esta página">
+        <a href="#work-title">Experiencia laboral</a>
+        <a href="#volunteer-title">Voluntariado</a>
+        <a href="#education-title">Formación</a>
+        <a href="#skills-title">Herramientas</a>
+      </nav>
+      <a class="text-link" href={`mailto:${profile.email}`}>Conversemos <span aria-hidden="true">↗</span></a>
+    </aside>
     <div class="resume-main">
-      <section class="resume-section" aria-labelledby="work-title"><div class="resume-section-heading"><span class="section-index">01</span><h2 id="work-title">Experiencia <em>laboral.</em></h2></div><ExperienceList items={profile.work} /></section>
-      <section class="resume-section" aria-labelledby="volunteer-title"><div class="resume-section-heading"><span class="section-index">02</span><h2 id="volunteer-title">Trabajo <em>voluntario.</em></h2></div><ExperienceList items={profile.volunteering} /></section>
-      <section class="resume-section" aria-labelledby="education-title"><div class="resume-section-heading"><span class="section-index">03</span><h2 id="education-title">Formación.</h2></div><div class="education-block"><h3>{profile.education.institution}</h3><p>{profile.education.program} · {profile.education.graduation}</p><p class="muted-label">Cursos relevantes</p><ul class="pill-list">{profile.education.courses.map((course) => <li>{course}</li>)}</ul></div></section>
-      <section class="resume-section" aria-labelledby="skills-title"><div class="resume-section-heading"><span class="section-index">04</span><h2 id="skills-title">Herramientas e <em>idiomas.</em></h2></div><dl class="skills-list">{profile.skills.map((skill) => <div><dt>{skill.name}</dt><dd>{skill.level}</dd></div>)}</dl></section>
+      <section class="resume-section" aria-labelledby="work-title">
+        <div class="resume-section-heading" data-reveal><span class="section-index">01</span><h2 id="work-title">Experiencia <em>laboral.</em></h2></div>
+        <ExperienceList items={profile.work} />
+      </section>
+      <section class="resume-section" aria-labelledby="volunteer-title">
+        <div class="resume-section-heading" data-reveal><span class="section-index">02</span><h2 id="volunteer-title">Trabajo <em>voluntario.</em></h2></div>
+        <ExperienceList items={profile.volunteering} />
+      </section>
+      <section class="resume-section" aria-labelledby="education-title">
+        <div class="resume-section-heading" data-reveal><span class="section-index">03</span><h2 id="education-title">Formación.</h2></div>
+        <div class="education-block" data-reveal>
+          <h3>{profile.education.institution}</h3>
+          <p>{profile.education.program} · {profile.education.graduation}</p>
+          <p class="muted-label">Cursos relevantes</p>
+          <ul class="pill-list">{profile.education.courses.map((course) => <li>{course}</li>)}</ul>
+        </div>
+      </section>
+      <section class="resume-section" aria-labelledby="skills-title">
+        <div class="resume-section-heading" data-reveal><span class="section-index">04</span><h2 id="skills-title">Herramientas e <em>idiomas.</em></h2></div>
+        <dl class="skills-list" data-reveal-stagger>{profile.skills.map((skill) => <div><dt>{skill.name}</dt><dd>{skill.level}</dd></div>)}</dl>
+      </section>
     </div>
   </div>
 </BaseLayout>

@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Página no encontrada" description="Esta página no existe o cambió de lugar." noindex>
+  <section class="section-wrap not-found">
+    <span class="not-found-code anim-fade" aria-hidden="true">404</span>
+    <span class="eyebrow anim-rise">Página arrancada</span>
+    <h1 class="anim-rise" style="--rise-delay: 80ms">Esta hoja se perdió<br /><em>entre los libros.</em></h1>
+    <p class="anim-rise" style="--rise-delay: 160ms">Puede que el enlace haya cambiado o que la página nunca se escribiera.</p>
+    <div class="hero-actions anim-rise" style="--rise-delay: 240ms">
+      <a class="button-primary" href="/">Volver al inicio <span aria-hidden="true">↗</span></a>
+      <a class="button-text" href="/cuaderno/">Ir al cuaderno <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</BaseLayout>

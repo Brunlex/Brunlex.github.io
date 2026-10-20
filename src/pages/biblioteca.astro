@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeading from '../components/ui/PageHeading.astro';
+import EmptyState from '../components/ui/EmptyState.astro';
+import BookCard from '../components/library/BookCard.astro';
+import { shelvesByStatus } from '../application/books';
+import { entryUrl } from '../application/entries';
+import { breadcrumbSchema } from '../application/seo';
+import { readingStatuses } from '../domain/book';
+import { loadBooks, loadEntries } from '../infrastructure/content-repository';
+import { pluralize } from '../lib/format';
+
+const books = await loadBooks();
+const shelves = shelvesByStatus(books);
+
+// Enlaza cada libro con la primera entrada del cuaderno que habla de él.
+const noteByBook = new Map<string, string>();
+for (const entry of await loadEntries()) {
+  if (entry.data.book && !noteByBook.has(entry.data.book.id)) noteByBook.set(entry.data.book.id, entryUrl(entry));
+}
+---
+
+<BaseLayout
+  title="Biblioteca"
+  description="La biblioteca personal de Bruno Eduardo: libros que está leyendo, los que ya leyó con sus valoraciones y citas, y los que esperan turno."
+  jsonLd={[breadcrumbSchema([{ name: 'Inicio', path: '/' }, { name: 'Biblioteca', path: '/biblioteca/' }])]}
+>
+  <PageHeading index="02 / Biblioteca" decoration="circle">
+    <Fragment slot="title">Libros que me<br /><em>acompañan.</em></Fragment>
+    Una estantería abierta: lo que tengo entre manos, lo que ya terminé y lo que me espera. Cada libro deja algo; aquí intento no olvidarlo.
+  </PageHeading>
+
+  <section class="section-wrap library-content" aria-labelledby="library-title">
+    <div class="notebook-topline">
+      <div><span class="eyebrow">Estantería</span><h2 id="library-title">Leído, por leer <em>y en curso.</em></h2></div>
+      <span class="entry-count">{pluralize(books.length, 'libro')}</span>
+    </div>
+
+    {shelves.length > 0 ? (
+      shelves.map((shelf) => (
+        <section class="shelf" aria-labelledby={`shelf-${shelf.status}`}>
+          <h3 class="shelf-title" id={`shelf-${shelf.status}`} data-reveal>{readingStatuses[shelf.status]} <sup>{shelf.books.length}</sup></h3>
+          <div class="book-grid" data-reveal-stagger>
+            {shelf.books.map((book) => <BookCard book={book} noteUrl={noteByBook.get(book.id)} />)}
+          </div>
+        </section>
+      ))
+    ) : (
+      <EmptyState>
+        <Fragment slot="title">Una estantería<br /><em>por llenar.</em></Fragment>
+        Los primeros libros llegarán pronto, con sus citas favoritas y lo que me dejaron.
+      </EmptyState>
+    )}
+  </section>
+</BaseLayout>

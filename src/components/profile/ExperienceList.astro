@@ -1,12 +1,12 @@
 ---
-import type { Experience } from '../domain/site';
+import type { Experience } from '../../domain/profile';
 interface Props { items: Experience[] }
 const { items } = Astro.props;
 ---
 
 <div class="experience-list">
   {items.map((item) => (
-    <article class="experience-item">
+    <article class="experience-item" data-reveal>
       <div class="experience-meta">
         <span class="period">{item.period}</span>
         {item.location && <span>{item.location}</span>}

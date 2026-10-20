@@ -1,0 +1,13 @@
+---
+interface Props {
+  index: string;
+  decoration?: 'none' | 'circle';
+}
+const { index, decoration = 'none' } = Astro.props;
+---
+
+<header class:list={['page-heading section-wrap', { 'page-heading-circle': decoration === 'circle' }]}>
+  <span class="eyebrow anim-rise">{index}</span>
+  <h1 class="anim-rise" style="--rise-delay: 80ms"><slot name="title" /></h1>
+  <p class="anim-rise" style="--rise-delay: 160ms"><slot /></p>
+</header>

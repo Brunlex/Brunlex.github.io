@@ -1,0 +1,30 @@
+---
+import { categoryUrl } from '../../application/entries';
+import { categories, categoryGroups, type Category, type CategoryGroup } from '../../domain/category';
+
+interface Props {
+  available: Category[];
+  counts: Map<Category, number>;
+  selected?: Category;
+  total: number;
+}
+const { available, counts, selected, total } = Astro.props;
+
+const groups = (Object.keys(categoryGroups) as CategoryGroup[])
+  .map((group) => ({ group, items: available.filter((category) => categories[category].group === group) }))
+  .filter(({ items }) => items.length > 0);
+---
+
+<nav class="category-nav" aria-label="Filtrar por categoría">
+  <a href="/cuaderno/" class="category-chip" aria-current={!selected ? 'page' : undefined}>Todas <sup>{total}</sup></a>
+  {groups.map(({ group, items }) => (
+    <div class="category-group">
+      <span class="category-group-label">{categoryGroups[group]}</span>
+      {items.map((category) => (
+        <a href={categoryUrl(category)} class="category-chip" aria-current={selected === category ? 'page' : undefined}>
+          {categories[category].label} <sup>{counts.get(category)}</sup>
+        </a>
+      ))}
+    </div>
+  ))}
+</nav>

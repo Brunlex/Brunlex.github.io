@@ -1,7 +1,8 @@
 ---
-import NotebookArchive from '../../components/NotebookArchive.astro';
-import { getPublishedEntries } from '../../application/entries';
-const entries = await getPublishedEntries();
+import NotebookArchive from '../../components/notebook/NotebookArchive.astro';
+import { loadEntries } from '../../infrastructure/content-repository';
+
+const entries = await loadEntries();
 ---
 
 <NotebookArchive entries={entries} />

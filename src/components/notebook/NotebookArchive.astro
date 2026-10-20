@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeading from '../ui/PageHeading.astro';
+import EntryCard from './EntryCard.astro';
+import CategoryNav from './CategoryNav.astro';
+import EmptyState from '../ui/EmptyState.astro';
+import { categoriesInUse, categoryUrl, type EntryRecord } from '../../application/entries';
+import { breadcrumbSchema } from '../../application/seo';
+import { categories, type Category } from '../../domain/category';
+import { pluralize } from '../../lib/format';
+
+interface Props {
+  entries: EntryRecord[];
+  selectedCategory?: Category;
+}
+const { entries, selectedCategory } = Astro.props;
+
+const counts = new Map<Category, number>();
+for (const entry of entries) counts.set(entry.data.category, (counts.get(entry.data.category) ?? 0) + 1);
+
+const visible = selectedCategory ? entries.filter((entry) => entry.data.category === selectedCategory) : entries;
+const selected = selectedCategory ? categories[selectedCategory] : undefined;
+
+const title = selected ? `${selected.label} · Cuaderno` : 'Cuaderno';
+const description = selected
+  ? `${selected.description} Entradas de la categoría «${selected.label}» en el cuaderno de Bruno Choque.`
+  : 'Lecturas, recuerdos, ideas y momentos importantes: el cuaderno personal de Bruno Choque.';
+const crumbs = [{ name: 'Inicio', path: '/' }, { name: 'Cuaderno', path: '/cuaderno/' }];
+if (selectedCategory && selected) crumbs.push({ name: selected.label, path: categoryUrl(selectedCategory) });
+---
+
+<BaseLayout title={title} description={description} jsonLd={[breadcrumbSchema(crumbs)]}>
+  <PageHeading index="01 / Cuaderno" decoration="circle">
+    <Fragment slot="title">{selected ? <>{selected.label}<em>.</em></> : <>Una vida entre<br /><em>páginas.</em></>}</Fragment>
+    {selected ? selected.description : 'Un lugar para guardar lecturas, preguntas, recuerdos y momentos que merecen otra mirada.'}
+  </PageHeading>
+
+  <section class="section-wrap notebook-content" aria-labelledby="notebook-title">
+    <div class="notebook-topline">
+      <div>
+        <span class="eyebrow">Archivo personal</span>
+        <h2 id="notebook-title">Notas y <em>lecturas.</em></h2>
+      </div>
+      <span class="entry-count">{pluralize(visible.length, 'entrada')}</span>
+    </div>
+
+    {entries.length > 0 ? (
+      <>
+        <CategoryNav available={categoriesInUse(entries)} counts={counts} selected={selectedCategory} total={entries.length} />
+        <div class="entry-grid" data-reveal-stagger>
+          {visible.map((entry) => <EntryCard entry={entry} />)}
+        </div>
+      </>
+    ) : (
+      <EmptyState>
+        <Fragment slot="title">Las primeras páginas<br /><em>están por escribirse.</em></Fragment>
+        Pronto habrá aquí lecturas, recuerdos e ideas. Mientras tanto, puedes asomarte a la <a href="/biblioteca/">biblioteca</a>.
+      </EmptyState>
+    )}
+  </section>
+</BaseLayout>

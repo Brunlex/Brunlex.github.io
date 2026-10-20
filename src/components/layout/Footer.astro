@@ -1,0 +1,22 @@
+---
+import { navigation } from '../../config/site';
+import { profile } from '../../data/profile';
+---
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div data-reveal>
+      <p class="eyebrow">Continuemos la conversación</p>
+      <h2>Las buenas ideas<br /><em>empiezan hablando.</em></h2>
+    </div>
+    <a class="footer-email" href={`mailto:${profile.email}`} data-reveal>{profile.email} <span aria-hidden="true">↗</span></a>
+  </div>
+  <nav class="footer-nav" aria-label="Secciones del sitio">
+    {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    <a href="/rss.xml">RSS</a>
+  </nav>
+  <div class="footer-bottom">
+    <span>© {new Date().getFullYear()} {profile.shortName} · {profile.location}</span>
+    <a href={profile.linkedin} target="_blank" rel="noopener noreferrer me">LinkedIn <span aria-hidden="true">↗</span></a>
+  </div>
+</footer>

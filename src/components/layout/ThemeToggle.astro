@@ -1,0 +1,35 @@
+---
+/**
+ * Alterna entre papel (claro) y lectura nocturna (oscuro).
+ * El tema inicial lo fija el script inline del <head> para evitar el parpadeo.
+ */
+---
+
+<button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">
+  <span class="theme-toggle-icon" aria-hidden="true"></span>
+  <span class="theme-toggle-label">Lectura nocturna</span>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const root = document.documentElement;
+
+  const sync = () => {
+    const dark = root.dataset.theme === 'dark';
+    button?.setAttribute('aria-pressed', String(dark));
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#1b211e' : '#f2eee7');
+  };
+
+  button?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* almacenamiento no disponible: el cambio dura solo esta visita */
+    }
+    sync();
+  });
+
+  sync();
+</script>

@@ -1,4 +1,4 @@
-import type { Experience, Skill } from '../domain/site';
+import type { Experience, Skill } from '../domain/profile';
 
 export const profile = {
   name: 'Bruno Alex Eduardo Choque',

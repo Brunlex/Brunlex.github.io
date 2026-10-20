@@ -1,0 +1,35 @@
+---
+import type { BookRecord } from '../../application/books';
+import { coverColor } from '../../lib/cover';
+import { formatMonthYear } from '../../lib/format';
+
+interface Props {
+  book: BookRecord;
+  /** URL de la entrada del cuaderno que habla de este libro, si existe. */
+  noteUrl?: string;
+}
+const { book, noteUrl } = Astro.props;
+const { title, author, year, rating, finishedAt, quote, note } = book.data;
+---
+
+<article class="book-card" style={`--cover: ${coverColor(title + author)}`}>
+  <div class="book-cover" aria-hidden="true">
+    <span class="book-cover-title">{title}</span>
+    <span class="book-cover-author">{author}</span>
+  </div>
+  <div class="book-body">
+    <h3>{title}</h3>
+    <p class="book-author">{author}{year && <span> · {year}</span>}</p>
+    {rating && (
+      <p class="book-rating" aria-label={`Valoración: ${rating} de 5`}>
+        {Array.from({ length: 5 }, (_, index) => <span class:list={{ on: index < rating }} aria-hidden="true">✳</span>)}
+      </p>
+    )}
+    {quote && <blockquote>«{quote}»</blockquote>}
+    {note && <p class="book-note">{note}</p>}
+    <div class="book-foot">
+      {finishedAt && <time datetime={finishedAt.toISOString()}>Terminado en {formatMonthYear(finishedAt)}</time>}
+      {noteUrl && <a class="text-link" href={noteUrl}>Leer mi nota <span aria-hidden="true">↗</span></a>}
+    </div>
+  </div>
+</article>

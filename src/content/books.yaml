@@ -1,0 +1,14 @@
+# Biblioteca personal. Cada libro necesita un `id` único (minúsculas y guiones).
+# Estados: leyendo · leido · por-leer. La valoración (rating) va de 1 a 5.
+#
+# Ejemplo:
+# - id: cien-anos-de-soledad
+#   title: Cien años de soledad
+#   author: Gabriel García Márquez
+#   year: 1967
+#   status: leido
+#   rating: 5
+#   finishedAt: 2026-03-14
+#   quote: "Muchos años después, frente al pelotón de fusilamiento…"
+#   note: Una frase breve sobre por qué me marcó.
+[]

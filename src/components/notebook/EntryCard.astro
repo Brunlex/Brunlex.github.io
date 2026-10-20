@@ -1,0 +1,25 @@
+---
+import { entryReadingMinutes, entryUrl, type EntryRecord } from '../../application/entries';
+import { categoryLabel } from '../../domain/category';
+import { formatDate } from '../../lib/format';
+
+interface Props {
+  entry: EntryRecord;
+  headingLevel?: 'h2' | 'h3';
+}
+const { entry, headingLevel: Heading = 'h3' } = Astro.props;
+const url = entryUrl(entry);
+---
+
+<article class="entry-card">
+  <div class="entry-card-meta">
+    <span>{categoryLabel(entry.data.category)}</span>
+    <time datetime={entry.data.publishedAt.toISOString()}>{formatDate(entry.data.publishedAt)}</time>
+  </div>
+  <Heading class="entry-card-title"><a href={url}>{entry.data.title}</a></Heading>
+  <p>{entry.data.description}</p>
+  <span class="entry-card-foot">
+    <span class="reading-time">{entryReadingMinutes(entry)} min de lectura</span>
+    <span class="entry-card-arrow" aria-hidden="true">↗</span>
+  </span>
+</article>

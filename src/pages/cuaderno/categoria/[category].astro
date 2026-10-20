@@ -1,14 +1,13 @@
 ---
-import NotebookArchive from '../../../components/NotebookArchive.astro';
-import { getPublishedCategories, getPublishedEntries } from '../../../application/entries';
+import type { GetStaticPaths } from 'astro';
+import NotebookArchive from '../../../components/notebook/NotebookArchive.astro';
+import { categoriesInUse } from '../../../application/entries';
+import { loadEntries } from '../../../infrastructure/content-repository';
 
-export async function getStaticPaths() {
-  const entries = await getPublishedEntries();
-  return getPublishedCategories(entries).map((category) => ({
-    params: { category },
-    props: { category, entries },
-  }));
-}
+export const getStaticPaths = (async () => {
+  const entries = await loadEntries();
+  return categoriesInUse(entries).map((category) => ({ params: { category }, props: { category, entries } }));
+}) satisfies GetStaticPaths;
 
 const { category, entries } = Astro.props;
 ---
